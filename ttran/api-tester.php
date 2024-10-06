@@ -21,11 +21,20 @@
         <tbody>
             <tr>
                 <td><a href="/comp3512-assignment1/ttran/api/circuits.php" target="_blank">/api/circuits.php</a></td>
-                <td>Returns all the circuits</td>
+                <td>Returns all the circuits for the season</td>
             </tr>
             <tr>
                 <td><a href="/comp3512-assignment1/ttran/api/circuits.php?circuitRef=monaco" target="_blank">/api/circuits.php?ref=monaco</a></td>
                 <td>Returns just the specified circuit (Monaco)</td>
+            </tr>
+
+            <tr>
+                <td><a href="/comp3512-assignment1/ttran/api/drivers.php" target="_blank">/api/drivers.php</a></td>
+                <td>Returns all the drivers for the season</td>
+            </tr>
+            <tr>
+                <td><a href="/comp3512-assignment1/ttran/api/drivers.php?driverRef=hamilton" target="_blank">/api/drivers.php?ref=hamilton</a></td>
+                <td>Returns just the specified driver (Hamilton)</td>
             </tr>
         </tbody>
     </table>
