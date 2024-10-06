@@ -10,7 +10,13 @@ try {
 
     $races = $racesGateway->getAllRacesFor2022();
 } catch (Exception $e) {
+
     die($e->getMessage());
+}
+
+if (isset($_GET['raceId'])) {
+    $raceId = $_GET['raceId'];
+    $qualifyingResults = $racesGateway->getQualifyingResultsFor2022($raceId);
 }
 ?>
 
@@ -36,6 +42,35 @@ try {
         }
         ?>
     </ul>
+
+    <h3>Qualifying Results</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Constructor</th>
+                <th>Q1</th>
+                <th>Q2</th>
+                <th>Q3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($qualifyingResults as $result) {
+                echo "<tr>";
+                echo "<td>" . $result['position'] . "</td>";
+                echo "<td>" . $result['forename'] . " " . $result['surname'] . "</td>";
+                echo "<td>" . $result['constructorName'] . "</td>";
+                echo "<td>" . $result['q1'] . "</td>";
+                echo "<td>" . $result['q2'] . "</td>";
+                echo "<td>" . $result['q3'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+
+        </tbody>
+    </table>
 
 </body>
 

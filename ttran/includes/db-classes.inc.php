@@ -161,4 +161,20 @@ class RacesDB
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+
+    public function getQualifyingResultsFor2022($raceId)
+    {
+
+        $sql = "SELECT q.position, d.forename, d.surname, c.name AS constructorName, q.q1, q.q2, q.q3
+                FROM qualifying q
+                JOIN drivers d ON q.driverId = d.driverId
+                JOIN constructors c ON q.constructorId = c.constructorId
+                JOIN races r ON q.raceId = r.raceId
+                WHERE r.raceId = ? AND r.year = 2022
+                ORDER BY q.position";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$raceId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
