@@ -89,3 +89,56 @@ class DriverDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+class ConstructorDB
+{
+    private static $baseSQL = "SELECT DISTINCT c.constructorRef, c.name AS constructorName, 
+                               c.nationality, c.url
+                               FROM constructors c
+                               INNER JOIN results res ON c.constructorId = res.constructorId
+                               INNER JOIN races r ON res.raceId = r.raceId
+                               WHERE r.year = 2022
+                               ORDER BY c.name";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+    public function getAll()
+    {
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+
+    // Fetch a specific constructor by constructorRef
+    public function getConstructorByConstructorRef($constructorRef)
+    {
+        $sql = "SELECT name, url, nationality
+                FROM constructors
+                WHERE constructorRef = ?";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$constructorRef]);
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch race results for a specific constructor by constructorRef and 2022
+    public function getRaceResultsByConstructorRef($constructorRef)
+    {
+        $sql = "SELECT c.constructorId, c.url, r.round, r.name AS circuit, 
+                d.forename, d.surname, res.position, res.points, d.forename, d.surname
+                FROM constructors c
+                INNER JOIN results res ON c.constructorId = res.constructorId
+                INNER JOIN drivers d ON res.driverId = d.driverId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE c.constructorRef = ? AND r.year = 2022
+                ORDER BY r.round";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$constructorRef]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}

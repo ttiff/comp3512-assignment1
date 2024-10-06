@@ -6,51 +6,50 @@ require_once 'includes/db-classes.inc.php';
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
-    $driverGateway = new DriverDB($conn);
+    $constructorGateway = new ConstructorDB($conn);
 
-    $drivers = $driverGateway->getAll();
+    $constructors = $constructorGateway->getAll();
 } catch (Exception $e) {
     die($e->getMessage());
 }
 
-if (isset($_GET['driverRef'])) {
-    $driverRef = $_GET['driverRef'];
+if (isset($_GET['constructorRef'])) {
+    $constructorRef = $_GET['constructorRef'];
 
-    $driver = $driverGateway->getDriverByDriverRef($driverRef);
+    $constructor = $constructorGateway->getConstructorByConstructorRef($constructorRef);
 
-    if ($driver) {
-        $raceResults = $driverGateway->getRaceResultsByDriverRef($driverRef);
+    if ($constructor) {
+        $raceResults = $constructorGateway->getRaceResultsByConstructorRef($constructorRef);
     } else {
-        die("Driver not found.");
+        die("Constructor not found.");
     }
 } else {
-    $driver = null;
+    $constructor = null;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Driver Details and Race Results</title>
-
+    <title>F1 Constructor Details and Race Results</title>
 </head>
 
 <body>
-    <h3>Select a Driver</h3>
+    <h3>Select a Constructor</h3>
     <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-        <label for="driverSelect">Driver:</label>
-        <select name="driverRef" id="driverSelect">
-            <option value="0">Select Driver</option>
+        <label for="constructorSelect">Constructor:</label>
+        <select name="constructorRef" id="constructorSelect">
+            <option value="0">Select constructor</option>
             <?php
-            foreach ($drivers as $row) {
-                echo "<option value='" . ($row['driverRef']) . "'";
-                if (isset($driverRef) && $driverRef == $row['driverRef']) {
+            foreach ($constructors as $row) {
+                echo "<option value='" . ($row['constructorRef']) . "'";
+                if (isset($constructorRef) && $constructorRef == $row['constructorRef']) {
                     echo " selected";
                 }
-                echo ">" . ($row['forename']) . " " . ($row['surname']) . "</option>";
+                echo ">" . ($row['constructorName']) . "</option>";
             }
             ?>
         </select>
@@ -58,13 +57,11 @@ if (isset($_GET['driverRef'])) {
     </form>
 
     <?php
-    if ($driver) {
-        echo "<h1>Driver Details</h1>";
-        echo "<p>Name: " . ($driver['forename']) . " " . ($driver['surname']) . "</p>";
-        echo "<p>Date of Birth: " . ($driver['dob']) . "</p>";
-        echo "<p>Age: " . ($driver['age']) . "</p>";
-        echo "<p>Nationality: " . ($driver['nationality']) . "</p>";
-        echo "<a href='" . ($driver['url']) . "' target='_blank'>Driver Biography</a>";
+    if ($constructor) {
+        echo "<h1>Constructor Details</h1>";
+        echo "<p>Name: " . ($constructor['name']) . "</p>";
+        echo "<p>Nationality: " . ($constructor['nationality']) . "</p>";
+        echo "<a href='" . ($constructor['url']) . "' target='_blank'>Constructor Biography</a>";
 
         echo "<h2>Race Results - 2022 Season</h2>";
         echo "<table>";
@@ -72,6 +69,7 @@ if (isset($_GET['driverRef'])) {
         echo "<tr>";
         echo "<th>Round</th>";
         echo "<th>Circuit</th>";
+        echo "<th>Driver</th>";
         echo "<th>Position</th>";
         echo "<th>Points</th>";
         echo "</tr>";
@@ -83,6 +81,7 @@ if (isset($_GET['driverRef'])) {
                 echo "<tr>";
                 echo "<td>" . ($result['round']) . "</td>";
                 echo "<td>" . ($result['circuit']) . "</td>";
+                echo "<td>" . ($result['forename']) . " " . ($result['surname']) . "</td>";
                 echo "<td>" . ($result['position']) . "</td>";
                 echo "<td>" . ($result['points']) . "</td>";
                 echo "</tr>";
@@ -94,7 +93,7 @@ if (isset($_GET['driverRef'])) {
         echo "</tbody>";
         echo "</table>";
     } else {
-        echo "<p>Please select a driver to view details and race results for the 2022 season.</p>";
+        echo "<p>Please select a constructor to view details and race results for the 2022 season.</p>";
     }
     ?>
 
