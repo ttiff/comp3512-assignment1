@@ -89,6 +89,7 @@ class DriverDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 class ConstructorDB
 {
     private static $baseSQL = "SELECT DISTINCT c.constructorRef, c.name AS constructorName, 
@@ -142,6 +143,7 @@ class ConstructorDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 class RacesDB
 {
     private static $baseSQL = "SELECT raceId, round, name AS circuit
@@ -167,11 +169,42 @@ class RacesDB
 
         $sql = "SELECT q.position, d.forename, d.surname, c.name AS constructorName, q.q1, q.q2, q.q3
                 FROM qualifying q
-                JOIN drivers d ON q.driverId = d.driverId
-                JOIN constructors c ON q.constructorId = c.constructorId
-                JOIN races r ON q.raceId = r.raceId
+                INNER JOIN drivers d ON q.driverId = d.driverId
+                INNER JOIN constructors c ON q.constructorId = c.constructorId
+                INNER JOIN races r ON q.raceId = r.raceId
                 WHERE r.raceId = ? AND r.year = 2022
                 ORDER BY q.position";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$raceId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRaceResultsFor2022($raceId)
+    {
+        $sql = "SELECT res.position, d.forename, d.surname, c.name AS constructorName, res.laps, res.points
+               FROM results res
+               INNER JOIN drivers d ON res.driverId = d.driverId
+               INNER JOIN constructors c ON res.constructorId = c.constructorId
+               INNER JOIN races r ON res.raceId = r.raceId
+               WHERE r.raceId = ? AND r.year = 2022
+               ORDER BY res.position";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$raceId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTop3Racers($raceId)
+    {
+        $sql = "SELECT d.forename, d.surname, c.name AS constructorName, res.position, res.points
+                FROM results res
+                INNER JOIN drivers d ON res.driverId = d.driverId
+                INNER JOIN constructors c ON res.constructorId = c.constructorId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE r.raceId = ? 
+                ORDER BY res.position
+                LIMIT 3";
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute([$raceId]);

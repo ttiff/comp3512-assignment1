@@ -17,6 +17,8 @@ try {
 if (isset($_GET['raceId'])) {
     $raceId = $_GET['raceId'];
     $qualifyingResults = $racesGateway->getQualifyingResultsFor2022($raceId);
+    $raceResults = $racesGateway->getRaceResultsFor2022($raceId);
+    $top3Racers = $racesGateway->getTop3Racers($raceId);
 }
 ?>
 
@@ -65,6 +67,55 @@ if (isset($_GET['raceId'])) {
                 echo "<td>" . $result['q1'] . "</td>";
                 echo "<td>" . $result['q2'] . "</td>";
                 echo "<td>" . $result['q3'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+
+        </tbody>
+    </table>
+
+
+    <h3>Top 3 Racers</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($top3Racers as $racer) {
+                echo "<tr>";
+                echo "<td>" . $racer['position'] . "</td>";
+                echo "<td>" . $racer['forename'] . " " . $racer['surname'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+
+
+    <h3>Results</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Constructor</th>
+                <th>Laps</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($raceResults as $result) {
+                echo "<tr>";
+                echo "<td>" . $result['position'] . "</td>";
+                echo "<td>" . $result['forename'] . " " . $result['surname'] . "</td>";
+                echo "<td>" . $result['constructorName'] . "</td>";
+                echo "<td>" . $result['laps'] . "</td>";
+                echo "<td>" . $result['points'] . "</td>";
                 echo "</tr>";
             }
             ?>
