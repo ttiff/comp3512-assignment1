@@ -210,4 +210,16 @@ class RacesDB
         $statement->execute([$raceId]);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRaceDetailsByRaceId($raceId)
+    {
+        $sql = "SELECT r.name AS raceName, r.round, c.name AS circuitName, c.location, c.country, r.date, r.url
+                FROM races r
+                JOIN circuits c ON r.circuitId = c.circuitId
+                WHERE r.raceId = ? AND r.year = 2022";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$raceId]);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }

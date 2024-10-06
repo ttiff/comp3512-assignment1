@@ -19,6 +19,7 @@ if (isset($_GET['raceId'])) {
     $qualifyingResults = $racesGateway->getQualifyingResultsFor2022($raceId);
     $raceResults = $racesGateway->getRaceResultsFor2022($raceId);
     $top3Racers = $racesGateway->getTop3Racers($raceId);
+    $raceDetails = $racesGateway->getRaceDetailsByRaceId($raceId);
 }
 ?>
 
@@ -74,6 +75,21 @@ if (isset($_GET['raceId'])) {
         </tbody>
     </table>
 
+    <h3>Race Details</h3>
+    <?php
+    if ($raceDetails) {
+        echo "<h1>Race Details</h1>";
+        echo "<p>Race Name: " . $raceDetails['raceName'] . "</p>";
+        echo "<p>Round: " . $raceDetails['round'] . "</p>";
+        echo "<p>Circuit Name: " . $raceDetails['circuitName'] . "</p>";
+        echo "<p>Location: " . $raceDetails['location'] . "</p>";
+        echo "<p>Country: " . $raceDetails['country'] . "</p>";
+        echo "<p>Date of Race: " . $raceDetails['date'] . "</p>";
+        echo "<a href='" . $raceDetails['url'] . "' target='_blank'>Race Information</a>";
+    } else {
+        echo "<p>No race details available. Please select a race to view the details.</p>";
+    }
+    ?>
 
     <h3>Top 3 Racers</h3>
     <table>
