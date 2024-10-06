@@ -12,6 +12,8 @@ try {
 
 if (isset($_GET['driverRef'])) {
     $data = $driversGateway->getDriverNamesByDriverRef($_GET['driverRef']);
+} else if (isset($_GET['raceId'])) {
+    $data = $driversGateway->getDriverNamesByGivenRaceId($_GET['raceId']);
 } else {
     $data = $driversGateway->getAllDriverNames();
 }
