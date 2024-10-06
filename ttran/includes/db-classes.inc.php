@@ -59,7 +59,6 @@ class DriverDB
         return $statement->fetchAll();
     }
 
-    // Fetch a specific driver by driverRef
     public function getDriverByDriverRef($driverRef)
     {
         $sql = "SELECT driverId, forename, surname, dob, nationality, url,
@@ -73,7 +72,6 @@ class DriverDB
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Fetch race results for a specific driver by driverRef and 2022
     public function getRaceResultsByDriverRef($driverRef)
     {
         $sql = "SELECT r.round, r.name AS circuit, res.position, res.points
@@ -112,7 +110,6 @@ class ConstructorDB
         return $statement->fetchAll();
     }
 
-    // Fetch a specific constructor by constructorRef
     public function getConstructorByConstructorRef($constructorRef)
     {
         $sql = "SELECT name, url, nationality
@@ -125,7 +122,6 @@ class ConstructorDB
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Fetch race results for a specific constructor by constructorRef and 2022
     public function getRaceResultsByConstructorRef($constructorRef)
     {
         $sql = "SELECT c.constructorId, c.url, r.round, r.name AS circuit, 
@@ -215,11 +211,43 @@ class RacesDB
     {
         $sql = "SELECT r.name AS raceName, r.round, c.name AS circuitName, c.location, c.country, r.date, r.url
                 FROM races r
-                JOIN circuits c ON r.circuitId = c.circuitId
+                INNER JOIN circuits c ON r.circuitId = c.circuitId
                 WHERE r.raceId = ? AND r.year = 2022";
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute([$raceId]);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+class CircuitsDB
+{
+    private static $baseSQL = "SELECT c.name 
+                               FROM circuits c
+                               INNER JOIN races r ON c.circuitId = r.circuitId
+                               WHERE r.year = 2022";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+    public function getAll()
+    {
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+
+    public function getCircuitByCircuitRef($circuitRef)
+    {
+        $sql = "SELECT c.name 
+                FROM circuits c
+                INNER JOIN races r ON c.circuitId = r.circuitId
+                WHERE c.circuitRef = ?";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$circuitRef]);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
