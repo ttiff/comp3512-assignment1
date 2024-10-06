@@ -10,10 +10,10 @@ try {
     die($e->getMessage());
 }
 
-if (isset($_GET['driverRef'])) {
-    $data = $driversGateway->getDriverNamesByDriverRef($_GET['driverRef']);
-} else if (isset($_GET['raceId'])) {
-    $data = $driversGateway->getDriverNamesByGivenRaceId($_GET['raceId']);
+if (isset($_GET['ref'])) {
+    $data = $driversGateway->getDriverNamesByDriverRef($_GET['ref']);
+} else if (isset($_GET['race'])) {
+    $data = $driversGateway->getDriverNamesByGivenRaceId($_GET['race']);
 } else {
     $data = $driversGateway->getAllDriverNames();
 }

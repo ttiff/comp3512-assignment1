@@ -10,8 +10,8 @@ try {
     die($e->getMessage());
 }
 
-if (isset($_GET['circuitRef'])) {
-    $data = $circuitsGateway->getCircuitByCircuitRef($_GET['circuitRef']);
+if (isset($_GET['ref'])) {
+    $data = $circuitsGateway->getCircuitByCircuitRef($_GET['ref']);
 } else {
     $data = $circuitsGateway->getAll();
 }

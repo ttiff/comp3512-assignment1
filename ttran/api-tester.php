@@ -24,7 +24,7 @@
                 <td>Returns all the circuits for the season</td>
             </tr>
             <tr>
-                <td><a href="/comp3512-assignment1/ttran/api/circuits.php?circuitRef=monaco" target="_blank">/api/circuits.php?circuitRef=monaco</a></td>
+                <td><a href="/comp3512-assignment1/ttran/api/circuits.php?ref=monaco" target="_blank">/api/circuits.php?ref=monaco</a></td>
                 <td>Returns just the specified circuit (Monaco)</td>
             </tr>
 
@@ -33,12 +33,12 @@
                 <td>Returns all the drivers for the season</td>
             </tr>
             <tr>
-                <td><a href="/comp3512-assignment1/ttran/api/drivers.php?driverRef=hamilton" target="_blank">/api/drivers.php?driverRef=hamilton</a></td>
+                <td><a href="/comp3512-assignment1/ttran/api/drivers.php?ref=hamilton" target="_blank">/api/drivers.php?ref=hamilton</a></td>
                 <td>Returns just the specified driver (Hamilton)</td>
             </tr>
 
             <tr>
-                <td><a href="/comp3512-assignment1/ttran/api/drivers.php?raceId=1106" target="_blank">/api/drivers.php?raceId=1106</a></td>
+                <td><a href="/comp3512-assignment1/ttran/api/drivers.php?race=1106" target="_blank">/api/drivers.php?race=1106</a></td>
                 <td>Returns the drivers within a given race (1106)</td>
             </tr>
 
