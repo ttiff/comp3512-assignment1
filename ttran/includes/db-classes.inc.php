@@ -39,16 +39,13 @@ class DatabaseHelper
 
 class DriverDB
 {
-    private static $baseSQL = "SELECT d.driverId, d.forename, d.surname, d.dob, d.nationality, d.url, d.driverRef, 
-                               (strftime('%Y', 'now') - strftime('%Y', d.dob)) AS 'Age', 
-                               r.round, r.name AS circuit, res.position, res.points
+    private static $baseSQL = "SELECT DISTINCT d.driverId, d.forename, d.surname, 
+                               d.dob, d.nationality, d.url, d.driverRef
                                FROM drivers d
                                INNER JOIN results res ON d.driverId = res.driverId
                                INNER JOIN races r ON res.raceId = r.raceId
                                WHERE r.year = 2022
-                               ORDER BY d.driverId";
-
-
+                               ORDER BY d.surname";
 
     public function __construct($connection)
     {
@@ -60,5 +57,35 @@ class DriverDB
         $sql = self::$baseSQL;
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
+    }
+
+    // Fetch a specific driver by driverRef
+    public function getDriverByDriverRef($driverRef)
+    {
+        $sql = "SELECT driverId, forename, surname, dob, nationality, url,
+                (strftime('%Y', 'now') - strftime('%Y', dob)) AS 'age' 
+                FROM drivers 
+                WHERE driverRef = ?";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$driverRef]);
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch race results for a specific driver by driverRef and 2022
+    public function getRaceResultsByDriverRef($driverRef)
+    {
+        $sql = "SELECT r.round, r.name AS circuit, res.position, res.points
+                FROM drivers d
+                INNER JOIN results res ON d.driverId = res.driverId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE d.driverRef = ? AND r.year = 2022
+                ORDER BY r.round";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$driverRef]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
