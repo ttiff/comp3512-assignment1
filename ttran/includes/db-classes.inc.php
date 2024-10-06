@@ -256,6 +256,30 @@ class RacesDB
         $statement->execute([$raceId]);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getRaceCircuitDetailsByRaceId($raceId)
+    {
+        $sql = "SELECT c.name AS circuitName, c.location, c.country
+                FROM races r
+                INNER JOIN circuits c ON r.circuitId = c.circuitId
+                WHERE r.raceId = ?";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$raceId]);
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getRaceNamesFor2022()
+    {
+        $sql = "SELECT name
+                FROM races
+                WHERE year = 2022
+                ORDER BY round";
+
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class CircuitsDB

@@ -41,6 +41,16 @@
                 <td><a href="/comp3512-assignment1/ttran/api/drivers.php?raceId=1106" target="_blank">/api/drivers.php?raceId=1106</a></td>
                 <td>Returns the drivers within a given race (1106)</td>
             </tr>
+
+            <tr>
+                <td><a href="/comp3512-assignment1/ttran/api/races.php?ref=1106" target="_blank">/api/races.php?ref=1106</a></td>
+                <td>Returns the specified race details (1106)</td>
+            </tr>
+
+            <tr>
+                <td><a href="/comp3512-assignment1/ttran/api/races.php" target="_blank">/api/races.php</a></td>
+                <td>Returns the races within the 2022 season ordered by round</td>
+            </tr>
         </tbody>
     </table>
 
