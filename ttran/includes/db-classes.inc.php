@@ -142,3 +142,23 @@ class ConstructorDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+class RacesDB
+{
+    private static $baseSQL = "SELECT raceId, round, name AS circuit
+                               FROM races
+                               WHERE year = 2022
+                               ORDER BY round";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+    public function getAllRacesFor2022()
+    {
+
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+}
