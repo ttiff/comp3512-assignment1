@@ -280,6 +280,41 @@ class RacesDB
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRaceResultsByRaceId($raceId)
+    {
+
+        $sql = "SELECT d.driverRef, d.code, d.forename, d.surname,
+                r.name AS raceName, r.round, r.year, r.date,
+                c.name AS constructorName, c.constructorRef, c.nationality,
+                res.grid, res.position
+                FROM results res
+                INNER JOIN drivers d ON res.driverId = d.driverId
+                INNER JOIN constructors c ON res.constructorId = c.constructorId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE res.raceId = ?
+                ORDER BY res.grid ASC";
+
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRaceResultsByDriverRef($driverRef)
+    {
+        $sql = "SELECT d.driverRef, d.forename, d.surname,
+                r.name AS raceName, r.round, r.year, r.date,
+                c.name AS constructorName, c.constructorRef, c.nationality,
+                res.grid, res.position
+                FROM results res
+                INNER JOIN drivers d ON res.driverId = d.driverId
+                INNER JOIN constructors c ON res.constructorId = c.constructorId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE d.driverRef = ?
+                ORDER BY r.year DESC, r.round ASC";
+
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $driverRef);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class CircuitsDB
@@ -311,5 +346,28 @@ class CircuitsDB
         $statement = $this->pdo->prepare($sql);
         $statement->execute([$circuitRef]);
         return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+}
+class QualifyingDB
+{
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+    public function getQualifyingResultsByRaceId($raceId)
+    {
+        $sql = "SELECT q.position, d.forename, d.surname, c.name AS constructorName, 
+                r.name AS raceName, q.q1, q.q2, q.q3
+                FROM qualifying q
+                INNER JOIN drivers d ON q.driverId = d.driverId
+                INNER JOIN constructors c ON q.constructorId = c.constructorId
+                INNER JOIN races r ON q.raceId = r.raceId
+                WHERE q.raceId = ?
+                ORDER BY q.position ASC";
+
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
+        return $statement->fetchAll();
     }
 }
