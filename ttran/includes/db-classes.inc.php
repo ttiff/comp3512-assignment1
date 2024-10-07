@@ -66,9 +66,7 @@ class DriverDB
                 FROM drivers 
                 WHERE driverRef = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$driverRef]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $driverRef);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -81,9 +79,7 @@ class DriverDB
                 WHERE d.driverRef = ? AND r.year = 2022
                 ORDER BY r.round";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$driverRef]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $driverRef);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -105,9 +101,7 @@ class DriverDB
                 FROM drivers 
                 WHERE driverRef = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$driverRef]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $driverRef);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -119,9 +113,7 @@ class DriverDB
                 INNER JOIN races r ON res.raceId = r.raceId
                 WHERE r.raceId = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
@@ -154,9 +146,7 @@ class ConstructorDB
                 FROM constructors
                 WHERE constructorRef = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$constructorRef]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $constructorRef);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -171,9 +161,7 @@ class ConstructorDB
                 WHERE c.constructorRef = ? AND r.year = 2022
                 ORDER BY r.round";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$constructorRef]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $constructorRef);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
@@ -209,8 +197,7 @@ class RacesDB
                 WHERE r.raceId = ? AND r.year = 2022
                 ORDER BY q.position";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -224,8 +211,7 @@ class RacesDB
                WHERE r.raceId = ? AND r.year = 2022
                ORDER BY res.position";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -240,8 +226,7 @@ class RacesDB
                 ORDER BY res.position
                 LIMIT 3";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -252,8 +237,7 @@ class RacesDB
                 INNER JOIN circuits c ON r.circuitId = c.circuitId
                 WHERE r.raceId = ? AND r.year = 2022";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -264,9 +248,7 @@ class RacesDB
                 INNER JOIN circuits c ON r.circuitId = c.circuitId
                 WHERE r.raceId = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$raceId]);
-
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -343,14 +325,12 @@ class CircuitsDB
                 INNER JOIN races r ON c.circuitId = r.circuitId
                 WHERE c.circuitRef = ?";
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute([$circuitRef]);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $circuitRef);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
 class QualifyingDB
 {
-
     public function __construct($connection)
     {
         $this->pdo = $connection;
