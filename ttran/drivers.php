@@ -35,68 +35,86 @@ if (isset($_GET['driverRef'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 Driver Details and Race Results</title>
+    <link rel="stylesheet" href="css/drivers.css">
+    <!-- Stylesheet sourced from Semantic UI CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
 </head>
 
 <body>
-    <h3>Select a Driver</h3>
-    <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-        <label for="driverSelect">Driver:</label>
-        <select name="driverRef" id="driverSelect">
-            <option value="0">Select Driver</option>
-            <?php
-            foreach ($drivers as $row) {
-                echo "<option value='" . ($row['driverRef']) . "'";
-                if (isset($driverRef) && $driverRef == $row['driverRef']) {
-                    echo " selected";
-                }
-                echo ">" . ($row['forename']) . " " . ($row['surname']) . "</option>";
-            }
-            ?>
-        </select>
-        <button type="submit">View Results</button>
-    </form>
+    <header>
+        <div class="ui dark large secondary pointing menu">
+            <a class="item" href="index.php">Home</a>
+            <a class="item" href="browse.php">Browse</a>
+            <a class="active item" href="drivers.php">Drivers</a>
+            <a class="item" href="constructors.php">Constructors</a>
+            <a class="item" href="api-tester.php">APIs</a>
+            <a class="item" href="https://github.com/ttiff/comp3512-assignment1">GitHub</a>
+        </div>
+    </header>
 
-    <?php
-    if ($driver) {
-        echo "<h1>Driver Details</h1>";
-        echo "<p>Name: " . ($driver['forename']) . " " . ($driver['surname']) . "</p>";
-        echo "<p>Date of Birth: " . ($driver['dob']) . "</p>";
-        echo "<p>Age: " . ($driver['age']) . "</p>";
-        echo "<p>Nationality: " . ($driver['nationality']) . "</p>";
-        echo "<a href='" . ($driver['url']) . "' target='_blank'>Driver Biography</a>";
-
-        echo "<h2>Race Results - 2022 Season</h2>";
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>Round</th>";
-        echo "<th>Circuit</th>";
-        echo "<th>Position</th>";
-        echo "<th>Points</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        if ($raceResults) {
-            foreach ($raceResults as $result) {
-                echo "<tr>";
-                echo "<td>" . ($result['round']) . "</td>";
-                echo "<td>" . ($result['circuit']) . "</td>";
-                echo "<td>" . ($result['position']) . "</td>";
-                echo "<td>" . ($result['points']) . "</td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='4'>No results available for the 2022 season.</td></tr>";
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>Please select a driver to view details and race results for the 2022 season.</p>";
-    }
-    ?>
+    <main class="ui container">
+        <div class="ui grid">
+            <div class="four wide column">
+                <h3>Select a Driver</h3>
+                <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
+                    <label for="driverSelect">Driver:</label>
+                    <select class="ui fluid dropdown" name="driverRef" id="driverSelect">
+                        <option value="0">Select Driver</option>
+                        <?php
+                        foreach ($drivers as $row) {
+                            echo "<option value='" . ($row['driverRef']) . "'";
+                            if (isset($driverRef) && $driverRef == $row['driverRef']) {
+                                echo " selected";
+                            }
+                            echo ">" . ($row['forename']) . " " . ($row['surname']) . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <button class="small ui teal button" type="submit"> <i class="eye icon"></i>View Results</button>
+                </form>
+            </div>
+            <div class="twelve wide column">
+                <?php if ($driver): ?>
+                    <h1>Driver Details</h1>
+                    <p>Name: <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
+                    <p>Date of Birth: <?= ($driver['dob']); ?></p>
+                    <p>Age: <?= ($driver['age']); ?></p>
+                    <p>Nationality: <?= ($driver['nationality']); ?></p>
+                    <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
+                    <h2>Race Results - 2022 Season</h2>
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Round</th>
+                                <th>Circuit</th>
+                                <th>Position</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($raceResults): ?>
+                                <?php foreach ($raceResults as $result): ?>
+                                    <tr>
+                                        <td><?= ($result['round']); ?></td>
+                                        <td><?= ($result['circuit']); ?></td>
+                                        <td><?= ($result['position']); ?></td>
+                                        <td><?= ($result['points']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4">No results available for the 2022 season.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p>Please select a driver to view details and race results for the 2022 season.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </main>
 
 
 </body>
