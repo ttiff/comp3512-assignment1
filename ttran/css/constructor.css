@@ -24,3 +24,38 @@
     color: #1E90FF !important;
     border-bottom: none;
 }
+
+main.ui.container {
+    margin-top: 30px !important;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+footer {
+    padding: 1em 0;
+    background-color: #1b1c1d;
+    color: white;
+    text-align: center;
+}
+
+body {
+    min-height: 100vh;
+}
+
+main.ui.container {
+    padding-bottom: 30px;
+}
+
+button.ui.teal.button {
+    margin-top: 15px;
+}

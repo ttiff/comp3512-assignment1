@@ -35,7 +35,7 @@ if (isset($_GET['driverRef'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 Driver Details and Race Results</title>
-    <link rel="stylesheet" href="css/drivers.css">
+    <link rel="stylesheet" href="css/driver.css">
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
@@ -75,46 +75,57 @@ if (isset($_GET['driverRef'])) {
                 </form>
             </div>
             <div class="twelve wide column">
-                <?php if ($driver): ?>
-                    <h1>Driver Details</h1>
-                    <p>Name: <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
-                    <p>Date of Birth: <?= ($driver['dob']); ?></p>
-                    <p>Age: <?= ($driver['age']); ?></p>
-                    <p>Nationality: <?= ($driver['nationality']); ?></p>
-                    <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
-                    <h2>Race Results - 2022 Season</h2>
-                    <table class="ui celled table">
-                        <thead>
-                            <tr>
-                                <th>Round</th>
-                                <th>Circuit</th>
-                                <th>Position</th>
-                                <th>Points</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($raceResults): ?>
-                                <?php foreach ($raceResults as $result): ?>
-                                    <tr>
-                                        <td><?= ($result['round']); ?></td>
-                                        <td><?= ($result['circuit']); ?></td>
-                                        <td><?= ($result['position']); ?></td>
-                                        <td><?= ($result['points']); ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
+                <div class="ui segment">
+                    <?php if ($driver): ?>
+                        <h1>Driver Details</h1>
+                        <p>Name: <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
+                        <p>Date of Birth: <?= ($driver['dob']); ?></p>
+                        <p>Age: <?= ($driver['age']); ?></p>
+                        <p>Nationality: <?= ($driver['nationality']); ?></p>
+                        <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
+                </div>
+                <h2>Race Results - 2022 Season</h2>
+                <table class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Circuit</th>
+                            <th>Position</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($raceResults): ?>
+                            <?php foreach ($raceResults as $result): ?>
                                 <tr>
-                                    <td colspan="4">No results available for the 2022 season.</td>
+                                    <td><?= ($result['round']); ?></td>
+                                    <td><?= ($result['circuit']); ?></td>
+                                    <td><?= ($result['position']); ?></td>
+                                    <td><?= ($result['points']); ?></td>
                                 </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <p>Please select a driver to view details and race results for the 2022 season.</p>
-                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4">No results available for the 2022 season.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>Please select a driver to view details and race results for the 2022 season.</p>
+            <?php endif; ?>
+
             </div>
         </div>
     </main>
+    <footer class="ui inverted vertical footer segment">
+        <div class="ui container">
+            <div class="ui section divider"></div>
+            <div class="ui center aligned container">
+                <p>&copy; MRU COMP 3512 Assignment #1 by Tiffany Tran. Built using HTML, CSS, PHP, MySQL, and Semantic UI.</p>
+            </div>
+        </div>
+    </footer>
 
 
 </body>
