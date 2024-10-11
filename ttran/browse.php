@@ -97,8 +97,8 @@ try {
                                         foreach ($qualifyingResults as $result) {
                                             echo "<tr>";
                                             echo "<td>" . $result['position'] . "</td>";
-                                            echo "<td>" . $result['forename'] . " " . $result['surname'] . "</td>";
-                                            echo "<td>" . $result['constructorName'] . "</td>";
+                                            echo "<td> <a href='drivers.php?driverRef=" . $result['driverRef'] . "'>" . $result['forename'] . " " . $result['surname'] . "</td>";
+                                            echo "<td> <a href='constructors.php?constructorRef=" . $result['constructorRef'] . "'>" . $result['constructorName'] . "</td>";
                                             echo "<td>" . $result['q1'] . "</td>";
                                             echo "<td>" . $result['q2'] . "</td>";
                                             echo "<td>" . $result['q3'] . "</td>";
@@ -126,7 +126,7 @@ try {
                                         foreach ($top3Racers as $racer) {
                                             echo "<tr>";
                                             echo "<td>" . $racer['position'] . "</td>";
-                                            echo "<td>" . $racer['forename'] . " " . $racer['surname'] . "</td>";
+                                            echo "<td> <a href='drivers.php?driverRef=" . $racer['driverRef'] . "'>" . $racer['forename'] . " " . $racer['surname'] . "</td>";
                                             echo "</tr>";
                                         }
                                     } else {
@@ -153,8 +153,8 @@ try {
                                         foreach ($raceResults as $result) {
                                             echo "<tr>";
                                             echo "<td>" . $result['position'] . "</td>";
-                                            echo "<td>" . $result['forename'] . " " . $result['surname'] . "</td>";
-                                            echo "<td>" . $result['constructorName'] . "</td>";
+                                            echo "<td> <a href='drivers.php?driverRef=" . $result['driverRef'] . "'>" . $result['forename'] . " " . $result['surname'] . "</td>";
+                                            echo "<td> <a href='constructors.php?constructorRef=" . $result['constructorRef'] . "'>" . $result['constructorName'] . "</td>";
                                             echo "<td>" . $result['laps'] . "</td>";
                                             echo "<td>" . $result['points'] . "</td>";
                                             echo "</tr>";

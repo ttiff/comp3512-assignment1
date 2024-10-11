@@ -189,7 +189,7 @@ class RacesDB
     public function getQualifyingResultsFor2022($raceId)
     {
 
-        $sql = "SELECT q.position, d.forename, d.surname, c.name AS constructorName, q.q1, q.q2, q.q3
+        $sql = "SELECT q.position, d.forename, d.driverRef, d.surname, c.name AS constructorName, c.constructorRef, q.q1, q.q2, q.q3
                 FROM qualifying q
                 INNER JOIN drivers d ON q.driverId = d.driverId
                 INNER JOIN constructors c ON q.constructorId = c.constructorId
@@ -203,13 +203,14 @@ class RacesDB
 
     public function getRaceResultsFor2022($raceId)
     {
-        $sql = "SELECT res.position, d.forename, d.surname, c.name AS constructorName, res.laps, res.points
-               FROM results res
-               INNER JOIN drivers d ON res.driverId = d.driverId
-               INNER JOIN constructors c ON res.constructorId = c.constructorId
-               INNER JOIN races r ON res.raceId = r.raceId
-               WHERE r.raceId = ? AND r.year = 2022
-               ORDER BY res.position";
+        $sql = "SELECT res.position, d.forename, d.surname, d.driverRef, 
+                c.name AS constructorName, c.constructorRef, res.laps, res.points
+                FROM results res
+                INNER JOIN drivers d ON res.driverId = d.driverId
+                INNER JOIN constructors c ON res.constructorId = c.constructorId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE r.raceId = ? AND r.year = 2022
+                ORDER BY res.position";
 
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, $raceId);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -217,7 +218,8 @@ class RacesDB
 
     public function getTop3Racers($raceId)
     {
-        $sql = "SELECT d.forename, d.surname, c.name AS constructorName, res.position, res.points
+        $sql = "SELECT d.forename, d.surname, d.driverRef, c.name AS constructorName, 
+                res.position, res.points
                 FROM results res
                 INNER JOIN drivers d ON res.driverId = d.driverId
                 INNER JOIN constructors c ON res.constructorId = c.constructorId
@@ -232,7 +234,8 @@ class RacesDB
 
     public function getRaceDetailsByRaceId($raceId)
     {
-        $sql = "SELECT r.name AS raceName, r.round, c.name AS circuitName, c.location, c.country, r.date, r.url
+        $sql = "SELECT r.name AS raceName, r.round, c.name AS circuitName,
+                c.location, c.country, r.date, r.url
                 FROM races r
                 INNER JOIN circuits c ON r.circuitId = c.circuitId
                 WHERE r.raceId = ? AND r.year = 2022";
