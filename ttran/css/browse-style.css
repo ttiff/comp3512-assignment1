@@ -1,0 +1,72 @@
+.ui.dark.menu {
+    background-color: #2c2f33 !important;
+    box-shadow: none;
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui.dark.menu a.item {
+    color: #ffffff !important;
+    font-size: 1.1em;
+    padding: 15px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.ui.dark.menu .active.item {
+    color: #007bff !important;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-bottom: none;
+}
+
+.ui.dark.menu a.item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #1E90FF !important;
+    border-bottom: none;
+}
+
+main.ui.container {
+    margin-top: 35px !important;
+}
+
+
+.ui.card {
+    /* padding: 10px; */
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ui.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ui.button.fluid {
+    margin-top: 5px;
+    padding: 5px 5px;
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: white;
+}
+
+.ui.button.fluid:hover {
+    background-color: #007bff;
+}
+
+
+#race-grid {
+    padding: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    margin-bottom: 50px !important;
+}
+
+footer {
+    padding: 20px 0 !important;
+}
+
+.ui.button {
+    text-align: center !important;
+}

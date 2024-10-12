@@ -28,9 +28,9 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse F1 Races - 2022 Season</title>
-    <link rel="stylesheet" href="css/browse.css">
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/browse-style.css">
 </head>
 
 
@@ -38,33 +38,39 @@ try {
     <header>
         <div class="ui dark large secondary pointing menu">
             <a class="item" href="index.php">Home</a>
-            <a class="item" href="browse.php">Browse</a>
+            <a class="active item" href="browse.php">Browse</a>
             <a class="item" href="drivers.php">Drivers</a>
-            <a class="active item" href="constructors.php">Constructors</a>
+            <a class="item" href="constructors.php">Constructors</a>
             <a class="item" href="api-tester.php">APIs</a>
             <a class="item" href="https://github.com/ttiff/comp3512-assignment1">GitHub</a>
         </div>
     </header>
-    <main class="ui container">
+    <main class="ui fluid container">
         <div class="ui grid stackable">
-            <div class="two wide column">
-                <h3>2022 Races</h3>
-                <ul>
-                    <?php
-                    foreach ($races as $race) {
-                        echo "<li>";
-                        echo "Round " . $race['round'] . " - " . $race['circuit'];
-                        echo " <a href='browse.php?raceId=" . $race['raceId'] . "'>Results</a>";
-                        echo "</li>";
-                    }
-                    ?>
-                </ul>
+            <div class="four wide column">
+                <h3 class="ui centered header">2022 Races</h3>
+                <div class="ui stackable doubling three column grid" id="race-grid">
+                    <?php foreach ($races as $race): ?>
+                        <div class="column">
+                            <div class="ui card">
+                                <div class="content">
+                                    <div class="header"><?= "Round " . $race['round']; ?></div>
+                                    <div class="meta"><?= $race['circuit']; ?></div>
+                                </div>
+                                <div class="extra content">
+                                    <a class="ui tiny button fluid" href="browse.php?raceId=<?= $race['raceId']; ?>">Results</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
             </div>
-            <div class="fourteen wide column">
+
+            <div class="eleven wide column">
                 <?php if (isset($_GET['raceId'])): ?>
                     <div class="ui segment">
                         <h3>Race Details</h3>
-
                         <?php if (!empty($raceDetails)): ?>
                             <p>Race Name: <?= $raceDetails['raceName'] ?></p>
                             <p>Round: <?= $raceDetails['round'] ?></p>
@@ -169,6 +175,10 @@ try {
                     </div>
             </div>
 
+        <?php else: ?>
+            <div class="ui segment">
+                <p>Please select a circuit to view details and race results for the 2022 season.</p>
+            </div>
         <?php endif; ?>
 
     </main>
