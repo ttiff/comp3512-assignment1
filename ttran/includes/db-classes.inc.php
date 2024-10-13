@@ -364,8 +364,9 @@ class QualifyingDB
 
     public function getQualifyingResultsByRaceId($raceId)
     {
-        $sql = "SELECT q.position, d.forename, d.surname, c.name AS constructorName, 
-                r.name AS raceName, q.q1, q.q2, q.q3
+        $sql = "SELECT d.driverRef, d.code, d.forename, d.surname, r.name AS raceName,
+                r.round, r.year, r.date, c.name as constructorName, c.constructorRef, c.nationality,
+                q.position, q.q1, q.q2, q.q3
                 FROM qualifying q
                 INNER JOIN drivers d ON q.driverId = d.driverId
                 INNER JOIN constructors c ON q.constructorId = c.constructorId
