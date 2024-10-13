@@ -309,16 +309,13 @@ class RacesDB
 
     public function getRaceResultsByDriverRef($driverRef)
     {
-        $sql = "SELECT d.driverRef, d.forename, d.surname,
-                r.name AS raceName, r.round, r.year, r.date,
-                c.name AS constructorName, c.constructorRef, c.nationality,
-                res.grid, res.position
+        $sql = "SELECT res.resultId, res.raceId, res.driverId, res.constructorId,
+                res.number, res.grid, res.position, res.positionText, res.positionOrder, 
+                res.points, res.laps, res.time, res.milliseconds, res.fastestLap, res.rank,
+                res.fastestLapTime, res.fastestLapSpeed, res.statusId
                 FROM results res
                 INNER JOIN drivers d ON res.driverId = d.driverId
-                INNER JOIN constructors c ON res.constructorId = c.constructorId
-                INNER JOIN races r ON res.raceId = r.raceId
-                WHERE d.driverRef = ?
-                ORDER BY r.year DESC, r.round ASC";
+                WHERE d.driverRef = ?";
 
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, $driverRef);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
