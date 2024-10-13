@@ -30,7 +30,7 @@ try {
     <title>Browse F1 Races - 2022 Season</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="css/browse-style.css">
+    <link rel="stylesheet" href="css/browse_style.css">
 </head>
 
 

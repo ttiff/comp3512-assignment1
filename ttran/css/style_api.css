@@ -14,14 +14,14 @@
 }
 
 .ui.dark.menu .active.item {
-    color: #007bff !important;
+    color: #D32F2F !important;
     background-color: rgba(255, 255, 255, 0.3);
     border-bottom: none;
 }
 
 .ui.dark.menu a.item:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: #1E90FF !important;
+    color: #D32F2F !important;
     border-bottom: none;
 }
 
