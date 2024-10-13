@@ -41,6 +41,14 @@
                         <td>Returns just the specified circuit (Monaco)</td>
                     </tr>
                     <tr>
+                        <td><a href="/comp3512-assignment1/ttran/api/constructors.php" target="_blank">/api/constructors.php</a></td>
+                        <td>Returns all the constructors for the season</td>
+                    </tr>
+                    <tr>
+                        <td><a href="/comp3512-assignment1/ttran/api/constructors.php?ref=mclaren" target="_blank">/api/constructors.php?ref=mclaren</a></td>
+                        <td>Returns just the specified constructor (Mclaren)</td>
+                    </tr>
+                    <tr>
                         <td><a href="/comp3512-assignment1/ttran/api/drivers.php" target="_blank">/api/drivers.php</a></td>
                         <td>Returns all the drivers for the season</td>
                     </tr>
