@@ -295,7 +295,9 @@ class RacesDB
         $sql = "SELECT d.driverRef, d.code, d.forename, d.surname,
                 r.name AS raceName, r.round, r.year, r.date,
                 c.name AS constructorName, c.constructorRef, c.nationality,
-                res.grid
+                res.number, res.grid, res.position, res.positionText, res.positionOrder, 
+                res.points, res.laps, res.time, res.milliseconds, res.fastestLap, res.rank,
+                res.fastestLapTime, res.fastestLapSpeed, res.statusId
                 FROM results res
                 INNER JOIN drivers d ON res.driverId = d.driverId
                 INNER JOIN constructors c ON res.constructorId = c.constructorId
