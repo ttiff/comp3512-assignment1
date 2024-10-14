@@ -13,7 +13,7 @@ try {
 if (isset($_GET['ref'])) {
     $data = $racesGateway->getRaceCircuitDetailsByRaceId($_GET['ref']);
 } else {
-    $data = $racesGateway->getRaceNamesFor2022();
+    $data = $racesGateway->getRacesFor2022();
 }
 
 if ($data) {

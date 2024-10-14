@@ -278,9 +278,9 @@ class RacesDB
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getRaceNamesFor2022()
+    public function getRacesFor2022()
     {
-        $sql = "SELECT name
+        $sql = "SELECT round, name, raceId, year, circuitId, date, time, url
                 FROM races
                 WHERE year = 2022
                 ORDER BY round";
