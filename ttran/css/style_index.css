@@ -40,14 +40,6 @@
     margin-bottom: 20px !important;
 }
 
-/* .ui.button.primary {
-    font-size: 1.1rem;
-    padding: 15px 30px;
-    background-color: #F44336;
-    color: #ffffff !important;
-    border-radius: 5px;
-} */
-
 .text-content .ui.button.primary {
     font-size: 1.5rem !important;
     padding: 15px 30px !important;
@@ -68,11 +60,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-footer.ui.inverted.vertical.footer.segment {
-    padding: 10px 0;
-    font-size: 0.9rem;
 }
 
 footer .ui.center.aligned.container p {

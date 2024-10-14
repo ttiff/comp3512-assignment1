@@ -57,7 +57,7 @@ if (isset($_GET['driverRef'])) {
         <div class="ui grid">
             <div class="four wide column">
                 <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-                    <label for="driverSelect" class="label">Select Driver</label>
+                    <label for="driverSelect" class="label">Select a Driver</label>
                     <select class="ui fluid dropdown" name="driverRef" id="driverSelect">
                         <option value="0">Select Driver</option>
                         <?php

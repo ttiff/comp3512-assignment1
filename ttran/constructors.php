@@ -55,9 +55,8 @@ if (isset($_GET['constructorRef'])) {
     <main class="ui container">
         <div class="ui grid">
             <div class="four wide column">
-                <h3>Select a Constructor</h3>
                 <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-                    <label for="constructorSelect">Constructor:</label>
+                    <label for="constructorSelect" class="label">Select a Constructor</label>
                     <select class="ui fluid dropdown" name="constructorRef" id="constructorSelect">
                         <option value="0">Select Constructor</option>
                         <?php
@@ -70,7 +69,7 @@ if (isset($_GET['constructorRef'])) {
                         }
                         ?>
                     </select>
-                    <button class="small ui teal button" type="submit"> <i class="eye icon"></i>View Results</button>
+                    <button class="medium ui button" type="submit"> <i class="eye icon"></i>View Results</button>
                 </form>
             </div>
             <div class="twelve wide column">
@@ -111,7 +110,7 @@ if (isset($_GET['constructorRef'])) {
                     </tbody>
                 </table>
             <?php else: ?>
-                <p>Please select a constructor to view details and race results for the 2022 season.</p>
+                <p class="message">Please select a constructor to view details and race results for the 2022 season.</p>
             <?php endif; ?>
             </div>
         </div>
