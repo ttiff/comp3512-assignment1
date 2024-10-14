@@ -56,9 +56,8 @@ if (isset($_GET['driverRef'])) {
     <main class="ui container">
         <div class="ui grid">
             <div class="four wide column">
-                <h3>Select a Driver</h3>
                 <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-                    <label for="driverSelect">Driver:</label>
+                    <label for="driverSelect" class="label">Select Driver</label>
                     <select class="ui fluid dropdown" name="driverRef" id="driverSelect">
                         <option value="0">Select Driver</option>
                         <?php
@@ -71,7 +70,7 @@ if (isset($_GET['driverRef'])) {
                         }
                         ?>
                     </select>
-                    <button class="small ui teal button" type="submit"> <i class="eye icon"></i>View Results</button>
+                    <button class="medium ui button" type="submit"> <i class="eye icon"></i>View Results</button>
                 </form>
             </div>
             <div class="twelve wide column">
@@ -112,7 +111,7 @@ if (isset($_GET['driverRef'])) {
                     </tbody>
                 </table>
             <?php else: ?>
-                <p>Please select a driver to view details and race results for the 2022 season.</p>
+                <p class="message">Please select a driver to view details and race results for the 2022 season.</p>
             <?php endif; ?>
 
             </div>
