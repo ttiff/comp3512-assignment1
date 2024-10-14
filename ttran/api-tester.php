@@ -74,7 +74,7 @@
                     </tr>
                     <tr>
                         <td><a href="/comp3512-assignment1/ttran/api/results.php?ref=1106" target="_blank">/api/results.php?ref=1106</a></td>
-                        <td>Returns the qualifying results for the specified race (1106)</td>
+                        <td>Returns the race results for the specified race (1106)</td>
                     </tr>
                     <tr>
                         <td><a href="/comp3512-assignment1/ttran/api/results.php?driver=max_verstappen" target="_blank">/api/results.php?driver=max_verstappen</a></td>
