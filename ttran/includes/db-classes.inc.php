@@ -269,7 +269,8 @@ class RacesDB
 
     public function getRaceCircuitDetailsByRaceId($raceId)
     {
-        $sql = "SELECT c.name AS circuitName, c.location, c.country
+        $sql = "SELECT r.name AS raceName, r.year, r.round, r.date, r.time,
+                r.url, c.name AS circuitName, c.location, c.country
                 FROM races r
                 INNER JOIN circuits c ON r.circuitId = c.circuitId
                 WHERE r.raceId = ?";
