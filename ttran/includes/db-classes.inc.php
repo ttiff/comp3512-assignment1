@@ -327,7 +327,8 @@ class RacesDB
 
 class CircuitsDB
 {
-    private static $baseSQL = "SELECT c.name 
+    private static $baseSQL = "SELECT c.circuitId, c.circuitRef, c.name, c.location, 
+                               c.country, c.lat, c.lng, c.alt, c.url
                                FROM circuits c
                                INNER JOIN races r ON c.circuitId = r.circuitId
                                WHERE r.year = 2022";
@@ -346,7 +347,8 @@ class CircuitsDB
 
     public function getCircuitByCircuitRef($circuitRef)
     {
-        $sql = "SELECT c.name 
+        $sql = "SELECT  c.circuitId, c.circuitRef, c.name, c.location,
+                c.country, c.lat, c.lng, c.alt, c.url
                 FROM circuits c
                 INNER JOIN races r ON c.circuitId = r.circuitId
                 WHERE c.circuitRef = ?";
