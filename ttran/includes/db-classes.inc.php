@@ -165,23 +165,24 @@ class ConstructorDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getConstructorNamesByConstructorRef($constructorRef)
+    public function get2022ConstructosrByConstructorRef($constructorRef)
     {
-        $sql = "SELECT name
-        FROM constructors
-        WHERE constructorRef = ?";
+        $sql = "SELECT constructorId, constructorRef, name, nationality, url
+                FROM constructors
+                WHERE constructorRef = ?";
 
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, $constructorRef);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllConstructorNames()
+    public function getAllConstructorsFor2022()
     {
-        $sql = "SELECT DISTINCT c.name AS constructorName
-                               FROM constructors c
-                               INNER JOIN results res ON c.constructorId = res.constructorId
-                               INNER JOIN races r ON res.raceId = r.raceId
-                               WHERE r.year = 2022";
+        $sql = "SELECT c.constructorId, c.constructorRef, c.name AS constructorName,
+                c.name, c.nationality, c.url
+                FROM constructors c
+                INNER JOIN results res ON c.constructorId = res.constructorId
+                INNER JOIN races r ON res.raceId = r.raceId
+                WHERE r.year = 2022";
 
 
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
