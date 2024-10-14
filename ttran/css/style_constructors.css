@@ -71,3 +71,8 @@ main.ui.container {
     background-color: #D32F2F !important;
     color: #ffffff;
 }
+
+.medium.ui.button:hover {
+    background-color: #b22222 !important;
+    color: #ffffff;
+}

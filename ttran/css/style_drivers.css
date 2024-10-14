@@ -72,3 +72,14 @@ main.ui.container {
     background-color: #D32F2F !important;
     color: #ffffff;
 }
+
+.ui.button {
+    margin-top: 10px;
+    background-color: #D32F2F !important;
+    color: #ffffff;
+}
+
+.medium.ui.button:hover {
+    background-color: #b22222 !important;
+    color: #ffffff;
+}

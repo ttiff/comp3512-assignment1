@@ -25,7 +25,7 @@
     </header>
     <main class="background-section">
         <div class="text-content">
-            <h1 class="ui header">COMP 3512 F1 Dashboard.</h1>
+            <h1 class="ui header">COMP 3512 - F1 Dashboard Project</h1>
             <p>Explore race results, driver performances, and more from the 2022 F1 season. </p>
             <a href="browse.php" class="ui button primary">Browse 2022 Season</a>
         </div>
