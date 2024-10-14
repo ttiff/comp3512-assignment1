@@ -11,7 +11,7 @@ try {
 }
 
 if (isset($_GET['ref'])) {
-    $data = $constructorsGateway->get2022ConstructosrByConstructorRef($_GET['ref']);
+    $data = $constructorsGateway->get2022ConstructorsByConstructorRef($_GET['ref']);
 } else {
     $data = $constructorsGateway->getAllConstructorsFor2022();
 }

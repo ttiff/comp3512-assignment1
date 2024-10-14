@@ -165,7 +165,7 @@ class ConstructorDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get2022ConstructosrByConstructorRef($constructorRef)
+    public function get2022ConstructorsByConstructorRef($constructorRef)
     {
         $sql = "SELECT constructorId, constructorRef, name, nationality, url
                 FROM constructors
@@ -177,8 +177,8 @@ class ConstructorDB
 
     public function getAllConstructorsFor2022()
     {
-        $sql = "SELECT c.constructorId, c.constructorRef, c.name AS constructorName,
-                c.name, c.nationality, c.url
+        $sql = "SELECT DISTINCT c.constructorId, c.constructorRef, 
+                c.name AS constructorName, c.name, c.nationality, c.url
                 FROM constructors c
                 INNER JOIN results res ON c.constructorId = res.constructorId
                 INNER JOIN races r ON res.raceId = r.raceId
