@@ -83,9 +83,10 @@ class DriverDB
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllDriverNames()
+    public function getAllDriversFor2022()
     {
-        $sql = "SELECT DISTINCT d.forename, d.surname 
+        $sql = "SELECT DISTINCT d.driverId, d.forename, d.surname, d.number, 
+                d.code, d.dob, d.nationality, d.url
                 FROM drivers d
                 INNER JOIN results res ON d.driverId = res.driverId
                 INNER JOIN races r ON res.raceId = r.raceId
@@ -95,9 +96,10 @@ class DriverDB
         return $statement->fetchAll();
     }
 
-    public function getDriverNamesByDriverRef($driverRef)
+    public function getDriverByDriverRefFor2022($driverRef)
     {
-        $sql = "SELECT forename, surname
+        $sql = "SELECT driverId, driverRef, number, code, forename, 
+                surname, dob, nationality, url
                 FROM drivers 
                 WHERE driverRef = ?";
 
@@ -107,7 +109,8 @@ class DriverDB
 
     public function getDriverNamesByGivenRaceId($raceId)
     {
-        $sql = "SELECT d.forename, d.surname 
+        $sql = "SELECT d.driverId, d.driverRef, d.number, d.code, d.forename,
+                d.surname, d.dob, d.nationality, d.url
                 FROM drivers d
                 INNER JOIN results res ON d.driverId = res.driverId
                 INNER JOIN races r ON res.raceId = r.raceId

@@ -11,11 +11,11 @@ try {
 }
 
 if (isset($_GET['ref'])) {
-    $data = $driversGateway->getDriverNamesByDriverRef($_GET['ref']);
+    $data = $driversGateway->getDriverByDriverRefFor2022($_GET['ref']);
 } else if (isset($_GET['race'])) {
     $data = $driversGateway->getDriverNamesByGivenRaceId($_GET['race']);
 } else {
-    $data = $driversGateway->getAllDriverNames();
+    $data = $driversGateway->getAllDriversFor2022();
 }
 
 if ($data) {
