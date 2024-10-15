@@ -6,9 +6,7 @@ require_once 'includes/helper.php';
 
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-
     $constructorGateway = new ConstructorDB($conn);
-
     $constructors = $constructorGateway->getAll();
 } catch (Exception $e) {
     die($e->getMessage());
@@ -16,10 +14,8 @@ try {
 
 if (isset($_GET['constructorRef'])) {
     $constructorRef = $_GET['constructorRef'];
-
     $constructor = $constructorGateway->getConstructorByConstructorRef($constructorRef);
     $countryCode = Helper::getCountryCodeByNationality($constructor['nationality']);
-
     if ($constructor) {
         $raceResults = $constructorGateway->getRaceResultsByConstructorRef($constructorRef);
     } else {
@@ -36,6 +32,9 @@ if (isset($_GET['constructorRef'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COMP 3512 F1 Constructor Details and Race Results Page">
+    <meta name="keywords" content="F1, Formula 1, race results, driver performances, constructors, 2022 season">
+    <meta name="author" content="Tiffany Tran">
     <title>F1 Constructor Details and Race Results</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
@@ -129,8 +128,6 @@ if (isset($_GET['constructorRef'])) {
             </div>
         </div>
     </footer>
-
-
 </body>
 
 </html>
