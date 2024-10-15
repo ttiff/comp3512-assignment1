@@ -87,7 +87,7 @@ if (isset($_GET['constructorRef'])) {
                         <a href=" <?= ($constructor['url']); ?>" target="_blank">Constructor Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>
-                <table class="ui celled table">
+                <table class="ui celled striped padded table">
                     <thead>
                         <tr>
                             <th>Round</th>
