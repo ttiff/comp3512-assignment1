@@ -48,7 +48,7 @@ try {
     <main class="ui fluid container">
         <div class="ui grid stackable">
             <div class="four wide column">
-                <h3 class="ui centered header">2022 Races</h3>
+                <h1 class="ui centered header">2022 Races</h1>
                 <div class="ui stackable doubling three column grid" id="race-grid">
                     <?php foreach ($races as $race): ?>
                         <div class="column">
@@ -70,14 +70,14 @@ try {
             <div class="eleven wide column">
                 <?php if (isset($_GET['raceId'])): ?>
                     <div class="ui segment">
-                        <h3>Race Details</h3>
+                        <h2>Race Details</h2>
                         <?php if (!empty($raceDetails)): ?>
-                            <p>Race Name: <?= $raceDetails['raceName'] ?></p>
-                            <p>Round: <?= $raceDetails['round'] ?></p>
-                            <p>Circuit Name: <?= $raceDetails['circuitName'] ?></p>
-                            <p>Location: <?= $raceDetails['location'] ?></p>
-                            <p>Country: <?= $raceDetails['country'] ?></p>
-                            <p>Date of Race: <?= $raceDetails['date'] ?></p>
+                            <p><span class="label-bold">Race Name: </span><?= $raceDetails['raceName'] ?></p>
+                            <p><span class="label-bold">Round: </span><?= $raceDetails['round'] ?></p>
+                            <p><span class="label-bold">Circuit Name: </span><?= $raceDetails['circuitName'] ?></p>
+                            <p><span class="label-bold">Location: </span><?= $raceDetails['location'] ?></p>
+                            <p><span class="label-bold">Country: </span><?= $raceDetails['country'] ?></p>
+                            <p><span class="label-bold">Date of Race: </span><?= $raceDetails['date'] ?></p>
                             <a href='<?= $raceDetails['url'] ?>' target='_blank'>Race Information</a>
                         <?php else: ?>
                             <p>No race details available. Please select a race to view the details.</p>

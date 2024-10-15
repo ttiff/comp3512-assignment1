@@ -31,7 +31,6 @@ main.ui.container {
 
 
 .ui.card {
-    /* padding: 10px; */
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -41,20 +40,20 @@ main.ui.container {
 }
 
 .ui.button.fluid {
-    margin-top: 5px;
-    padding: 5px 5px;
-    font-size: 0.9rem;
+    font-size: small;
     background-color: #D32F2F;
     color: white;
 }
 
 .ui.button.fluid:hover {
-    background-color: #D32F2F;
+    background-color: #b22222;
 }
 
+.ui.button {
+    text-align: center !important;
+}
 
 #race-grid {
-    padding: 60px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -67,6 +66,18 @@ footer {
     padding: 20px 0 !important;
 }
 
-.ui.button {
-    text-align: center !important;
+.label-bold {
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+.ui.segment a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.ui.segment a:hover {
+    text-decoration: underline;
+    color: #003366;
 }
