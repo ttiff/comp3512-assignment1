@@ -2,6 +2,7 @@
 
 require_once 'includes/config.inc.php';
 require_once 'includes/db-classes.inc.php';
+require_once 'includes/helper.php';
 
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
@@ -14,6 +15,7 @@ try {
 if (isset($_GET['driverRef'])) {
     $driverRef = $_GET['driverRef'];
     $driver = $driverGateway->getDriverByDriverRef($driverRef);
+    $countryCode = Helper::getCountryCodeByNationality($driver['nationality']);
     if ($driver) {
         $raceResults = $driverGateway->getRaceResultsByDriverRef($driverRef);
     } else {
@@ -36,6 +38,8 @@ if (isset($_GET['driverRef'])) {
     <title>F1 Driver Details and Race Results</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style_drivers.css">
 
 </head>
@@ -78,7 +82,10 @@ if (isset($_GET['driverRef'])) {
                         <p><span class="label-bold">Name: </span> <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
                         <p><span class="label-bold">Date of Birth: </span> <?= ($driver['dob']); ?></p>
                         <p><span class="label-bold">Age: </span> <?= ($driver['age']); ?></p>
-                        <p><span class="label-bold">Nationality: </span><?= ($driver['nationality']); ?></p>
+                        <p>
+                            <span class="label-bold">Nationality: </span>
+                            <?= $driver['nationality']; ?> <span class="flag-icon flag-icon-<?= $countryCode; ?>"></span>
+                        </p>
                         <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>

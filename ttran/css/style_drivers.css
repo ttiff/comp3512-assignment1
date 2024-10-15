@@ -86,3 +86,8 @@ footer {
     text-decoration: underline;
     color: #003366;
 }
+
+.flag-icon {
+    margin-left: 10px;
+    border: 1px solid #ccc;
+}
