@@ -18,6 +18,7 @@ if (isset($_GET['constructorRef'])) {
     $constructorRef = $_GET['constructorRef'];
 
     $constructor = $constructorGateway->getConstructorByConstructorRef($constructorRef);
+    $countryCode = Helper::getCountryCodeByNationality($constructor['nationality']);
 
     if ($constructor) {
         $raceResults = $constructorGateway->getRaceResultsByConstructorRef($constructorRef);
@@ -38,6 +39,8 @@ if (isset($_GET['constructorRef'])) {
     <title>F1 Constructor Details and Race Results</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style_constructors.css">
 
 </head>
@@ -78,7 +81,9 @@ if (isset($_GET['constructorRef'])) {
                     <?php if ($constructor): ?>
                         <h1>Constructor Details</h1>
                         <p><span class="label-bold">Name: </span><?= ($constructor['name']) ?> </p>
-                        <p><span class="label-bold">Nationality: </span> <?= ($constructor['nationality']) ?></p>
+                        <p><span class="label-bold">Nationality: </span>
+                            <?= ($constructor['nationality']) ?> <span class="flag-icon flag-icon-<?= $countryCode; ?>"></span>
+                        </p>
                         <a href=" <?= ($constructor['url']); ?>" target="_blank">Constructor Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>

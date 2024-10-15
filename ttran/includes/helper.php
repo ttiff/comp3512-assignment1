@@ -19,7 +19,11 @@ class Helper
             'Thai' => 'th',
             'Australian' => 'au',
             'Mexican' => 'mx',
-            'Dutch' => 'nl'
+            'Dutch' => 'nl',
+            'Swiss' => 'ch',
+            'Italian' => 'it',
+            'American' => 'us',
+            'Austrian' => 'at'
         ];
 
 
