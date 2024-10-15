@@ -5,9 +5,7 @@ require_once 'includes/db-classes.inc.php';
 
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-
     $driverGateway = new DriverDB($conn);
-
     $drivers = $driverGateway->getAll();
 } catch (Exception $e) {
     die($e->getMessage());
@@ -15,9 +13,7 @@ try {
 
 if (isset($_GET['driverRef'])) {
     $driverRef = $_GET['driverRef'];
-
     $driver = $driverGateway->getDriverByDriverRef($driverRef);
-
     if ($driver) {
         $raceResults = $driverGateway->getRaceResultsByDriverRef($driverRef);
     } else {
@@ -34,6 +30,9 @@ if (isset($_GET['driverRef'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COMP 3512 F1 Driver Details and Race Results Page">
+    <meta name="keywords" content="F1, Formula 1, race results, driver performances, constructors, 2022 season">
+    <meta name="author" content="Tiffany Tran">
     <title>F1 Driver Details and Race Results</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
@@ -52,7 +51,6 @@ if (isset($_GET['driverRef'])) {
             <a class="item" href="https://github.com/ttiff/comp3512-assignment1">GitHub</a>
         </div>
     </header>
-
     <main class="ui container">
         <div class="ui grid">
             <div class="four wide column">
@@ -113,7 +111,6 @@ if (isset($_GET['driverRef'])) {
             <?php else: ?>
                 <p class="message">Please select a driver to view details and race results for the 2022 season.</p>
             <?php endif; ?>
-
             </div>
         </div>
     </main>
@@ -125,8 +122,6 @@ if (isset($_GET['driverRef'])) {
             </div>
         </div>
     </footer>
-
-
 </body>
 
 </html>
