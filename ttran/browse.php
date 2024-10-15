@@ -6,7 +6,6 @@ require_once 'includes/helper.php';
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     $racesGateway = new RacesDB($conn);
-
     $races = $racesGateway->getAllRacesFor2022();
 
     if (isset($_GET['raceId'])) {
@@ -28,6 +27,9 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COMP 3512 Browse F1 Races - 2022 Season Page">
+    <meta name="keywords" content="F1, Formula 1, race results, driver performances, constructors, 2022 season">
+    <meta name="author" content="Tiffany Tran">
     <title>Browse F1 Races - 2022 Season</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
@@ -35,7 +37,6 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style_browse.css">
 </head>
-
 
 <body>
     <header>
@@ -66,10 +67,8 @@ try {
                             </div>
                         </div>
                     <?php endforeach; ?>
-
                 </div>
             </div>
-
             <div class="eleven wide column">
                 <?php if (isset($_GET['raceId'])): ?>
                     <div class="ui segment">
@@ -82,7 +81,6 @@ try {
                             <p><span class="label-bold">Country: </span><?= $raceDetails['country'] ?> <span class="flag-icon flag-icon-<?= $countryCode; ?>"></span></p>
                             <p><span class="label-bold">Date of Race: </span><?= $raceDetails['date'] ?></p>
                             <a href='<?= $raceDetails['url'] ?>' target='_blank'>Race Information</a>
-
                         <?php else: ?>
                             <p>No race details available. Please select a race to view the details.</p>
                         <?php endif; ?>
@@ -145,7 +143,6 @@ try {
                                     ?>
                                 </tbody>
                             </table>
-
                             <h3>Race Results</h3>
                             <table class="ui celled striped padded table">
                                 <thead>
@@ -178,15 +175,12 @@ try {
                         </div>
                     </div>
             </div>
-
         <?php else: ?>
             <div class="ui segment">
                 <p>Please select a circuit to view details and race results for the 2022 season.</p>
             </div>
         <?php endif; ?>
-
     </main>
-
     <footer class="ui inverted vertical footer segment">
         <div class="ui container">
             <div class="ui section divider"></div>
@@ -195,7 +189,6 @@ try {
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>
