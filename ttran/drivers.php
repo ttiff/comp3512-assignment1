@@ -89,7 +89,7 @@ if (isset($_GET['driverRef'])) {
                         <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>
-                <table class="ui celled table">
+                <table class="ui celled striped padded table">
                     <thead>
                         <tr>
                             <th>Round</th>
