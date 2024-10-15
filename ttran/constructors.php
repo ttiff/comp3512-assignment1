@@ -2,6 +2,7 @@
 
 require_once 'includes/config.inc.php';
 require_once 'includes/db-classes.inc.php';
+require_once 'includes/helper.php';
 
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
@@ -76,8 +77,8 @@ if (isset($_GET['constructorRef'])) {
                 <div class="ui segment">
                     <?php if ($constructor): ?>
                         <h1>Constructor Details</h1>
-                        <p>Name: <?= ($constructor['name']) ?> </p>
-                        <p>Nationality: <?= ($constructor['nationality']) ?></p>
+                        <p><span class="label-bold">Name: </span><?= ($constructor['name']) ?> </p>
+                        <p><span class="label-bold">Nationality: </span> <?= ($constructor['nationality']) ?></p>
                         <a href=" <?= ($constructor['url']); ?>" target="_blank">Constructor Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>
