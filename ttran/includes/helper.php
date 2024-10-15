@@ -35,4 +35,37 @@ class Helper
             return $defaultFlag;
         }
     }
+
+    public static function getCountryCodeByCountry($country)
+    {
+        $countryCodes = [
+            'Bahrain' => 'bh',
+            'Saudi Arabia' => 'sa',
+            'Australia' => 'au',
+            'Italy' => 'it',
+            'USA' => 'us',
+            'Spain' => 'es',
+            'Monaco' => 'mc',
+            'Azerbaijan' => 'az',
+            'Canada' => 'ca',
+            'UK' => 'gb',
+            'Austria' => 'at',
+            'France' => 'fr',
+            'Hungary' => 'hu',
+            'Belgium' => 'be',
+            'Netherlands' => 'nl',
+            'Singapore' => 'sg',
+            'Japan' => 'jp',
+            'Mexico' => 'mx',
+            'Brazil' => 'br',
+            'UAE' => 'ae'
+        ];
+        $defaultFlag = 'un';
+
+        if (isset($countryCodes[$country])) {
+            return $countryCodes[$country];
+        } else {
+            return $defaultFlag;
+        }
+    }
 }
