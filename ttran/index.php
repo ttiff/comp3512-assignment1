@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COMP 3512 F1 Homepage">
+    <meta name="keywords" content="F1, Formula 1, race results, driver performances, constructors, 2022 season">
+    <meta name="author" content="Tiffany Tran">
     <title>Home</title>
     <!-- Stylesheet sourced from Semantic UI CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="css/style_index.css">
-
-
 </head>
 
 <body>
