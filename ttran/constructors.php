@@ -60,9 +60,9 @@ if (isset($_GET['constructorRef'])) {
         <div class="ui grid">
             <div class="four wide column">
                 <form method="get" action="<?= $_SERVER['REQUEST_URI'] ?>">
-                    <label for="constructorSelect" class="label">Select a Constructor</label>
+                    <label for="constructorSelect" class="label">2022 Season Constructors</label>
                     <select class="ui fluid dropdown" name="constructorRef" id="constructorSelect">
-                        <option value="0">Select Constructor</option>
+                        <option value="0">Select a Constructor</option>
                         <?php
                         foreach ($constructors as $row) {
                             echo "<option value='" . ($row['constructorRef']) . "'";
