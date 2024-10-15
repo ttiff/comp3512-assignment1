@@ -75,10 +75,10 @@ if (isset($_GET['driverRef'])) {
                 <div class="ui segment">
                     <?php if ($driver): ?>
                         <h1>Driver Details</h1>
-                        <p>Name: <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
-                        <p>Date of Birth: <?= ($driver['dob']); ?></p>
-                        <p>Age: <?= ($driver['age']); ?></p>
-                        <p>Nationality: <?= ($driver['nationality']); ?></p>
+                        <p><span class="label-bold">Name: </span> <?= ($driver['forename'] . " " . $driver['surname']); ?></p>
+                        <p><span class="label-bold">Date of Birth: </span> <?= ($driver['dob']); ?></p>
+                        <p><span class="label-bold">Age: </span> <?= ($driver['age']); ?></p>
+                        <p><span class="label-bold">Nationality: </span><?= ($driver['nationality']); ?></p>
                         <a href="<?= ($driver['url']); ?>" target="_blank">Driver Biography</a>
                 </div>
                 <h2>Race Results - 2022 Season</h2>
