@@ -10,7 +10,7 @@ This repostiory holds the code for Assignment #1 for COMP 3512 at Mount Royal Un
 - API Access: A set of RESTful APIs allows you to query circuits, drivers, constructors, race results, and more.
 
 ## Technologies Used
-- HTML, CSS, PHP, MySQL, Semantic UI
+- HTML, CSS, PHP, SQLite, Semantic UI
 
 ## Main Project Files
 - index.php - Home page of the F1 Dashboard project, introducing the 2022 season.

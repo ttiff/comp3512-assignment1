@@ -125,7 +125,7 @@ if (isset($_GET['driverRef'])) {
         <div class="ui container">
             <div class="ui section divider"></div>
             <div class="ui center aligned container">
-                <p>&copy; MRU COMP 3512 Assignment #1 by Tiffany Tran. Built using HTML, CSS, PHP, MySQL, and Semantic UI.</p>
+                <p>&copy; MRU COMP 3512 Assignment #1 by Tiffany Tran. Built using HTML, CSS, PHP, SQLite, and Semantic UI.</p>
             </div>
         </div>
     </footer>
