@@ -156,7 +156,7 @@ class ConstructorDB
     public function getRaceResultsByConstructorRef($constructorRef)
     {
         $sql = "SELECT c.constructorId, c.url, r.round, r.name AS circuit, 
-                d.forename, d.surname, res.position, res.points, d.forename, d.surname
+                d.forename, d.surname, res.position, res.points
                 FROM constructors c
                 INNER JOIN results res ON c.constructorId = res.constructorId
                 INNER JOIN drivers d ON res.driverId = d.driverId
